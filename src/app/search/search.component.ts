@@ -9,7 +9,7 @@ import { Person, SearchService } from '../shared';
 })
 export class SearchComponent implements OnInit {
 
-  query: string | undefined;
+  query!: string;
   searchResults: Person[] = [];
 
   constructor(private searchService: SearchService) { }
@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void { }
 
   search(): void { 
-    this.searchService.getAll().subscribe(
+    this.searchService.search(this.query).subscribe(
       (data: Person[]) => { this.searchResults = data; },
       error => console.log(error)
     );
